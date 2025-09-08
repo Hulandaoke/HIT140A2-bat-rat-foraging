@@ -1,0 +1,23 @@
+<!DOCTYPE html><html><head><meta charset='utf-8'><title>HIT140 A2 – Investigation A</title>
+<style>body{font-family:-apple-system,Segoe UI,Roboto,Arial;max-width:900px;margin:40px auto;line-height:1.5}</style></head><body>
+<h1>HIT140 – Assessment 2 (Objective 1 · Investigation A)</h1>
+<p><b>Bat vs. Rat: The Forage Files — Descriptive &amp; Inferential Analysis in Python</b></p>
+<h2>2. Data overview</h2>
+<p><b>dataset1 columns:</b> start_time, bat_landing_to_food, habit, rat_period_start, rat_period_end, seconds_after_rat_arrival, risk, reward, month, sunset_time, hours_after_sunset, season<br/><b>dataset2 columns:</b> time, month, hours_after_sunset, bat_landing_number, food_availability, rat_minutes, rat_arrival_number</p>
+<h2>Key Figures</h2>
+<p><img src="../figures/risk_rate_by_season.png" style="max-width:860px;display:block;margin-bottom:20px;"/></p>
+<p><img src="../figures/bat_landings_vs_rat_minutes.png" style="max-width:860px;display:block;margin-bottom:20px;"/></p>
+<h2>Logistic regression (top effects by p-value)</h2>
+<pre>|                           |     OR |   CI_lower |   CI_upper |   p_value |
+|:--------------------------|-------:|-----------:|-----------:|----------:|
+| C(season)[T.1]            | 0.6987 |     0.4891 |     0.9983 |    0.0489 |
+| hours_after_sunset        | 0.9491 |     0.8987 |     1.0023 |    0.0602 |
+| seconds_after_rat_arrival | 1.0003 |     0.9998 |     1.0009 |    0.2795 |</pre>
+<h2>8. Conclusions</h2>
+<p><b>Conclusion:</b> Evidence supports that bats perceive rats as potential predators.</p>
+<ul><li>Chi-square (season × risk): χ²=3.021, df=1, p=0.08219.</li><li>Logistic model: risk ~ seconds_after_rat_arrival + hours_after_sunset + C(season) (n=907, AIC=1257.517).</li><li>Correlation (30-min bins): rat_minutes vs bat_landing_number → r=-0.146.</li></ul>
+<p>- Limitations: Observational data; some missing values; potential unobserved confounders (weather, microhabitat).</p>
+<h2>9. Reproducibility</h2>
+<p>Environment: Python 3.9.7, macOS, pandas 1.5.3, numpy 1.23.5, matplotlib 3.6.3, scipy 1.10.1, statsmodels 0.13.5</p>
+<p>Raw CSV files are stored in <code>../data/</code> folder. All data processing and analysis done through Python scripts.</p>
+</body></html>
